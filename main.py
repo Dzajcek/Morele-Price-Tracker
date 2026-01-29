@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import datetime
 import json
 import os
-import time
+from time import sleep
 
 class MoreleScraper:
 
@@ -126,7 +126,7 @@ class MoreleScraper:
                         self.products[name].append({"price": price, "time": time, "url": url})
                         print(f"Zaktualizowano: {name} -> {price} zł")
                 
-                time.sleep(1)
+                sleep(1)
 
             except Exception as e:
                 print(f"Blad przy aktualizacji {name}: {e}")
