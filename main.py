@@ -122,6 +122,15 @@ class MoreleScraper:
                     if price_element:
                         price = float(price_element["data-price"])
                         time = datetime.datetime.now().strftime("%Y.%m.%d %H:%M:%S")
+
+                        if history[-1].get("price") > price:
+                            roznica = history[-1].get("price") - price
+                            print(f"✔️ CENA SPADLA O {roznica:.2f} zł!")
+                        elif history[-1].get("price") < price:
+                            roznica = price - history[-1].get("price")
+                            print(f"❌ CENA WZROSLA O {roznica:.2f} zł!!")
+                        else:
+                            print("🟡 CENA NIE ULEGLA ZMIANIE!")
                         
                         self.products[name].append({"price": price, "time": time, "url": url})
                         print(f"Zaktualizowano: {name} -> {price} zł")
